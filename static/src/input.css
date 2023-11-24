@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    background-color: #000011;
+}
+
+.input-param {
+    @apply appearance-none glow transition duration-300 ease-in-out bg-inherit block w-full border-2 border-gray-400 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none text-gray-200;
+}
+
+.input-label {
+    @apply block uppercase tracking-wide text-zinc-400 text-xs font-bold mb-2;
+}
+
+.glow:focus {
+    box-shadow: #ffffff65 0 0 7px 7px;
+    border-radius: 0.5rem;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    border-color: #ffffff65;
+}
