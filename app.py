@@ -41,7 +41,7 @@ def calc():
                     },
                     {
                         "role": "user",
-                        "content": f"I have sown {crop} in a temperature of {temp} with a rainfall of {rain} in a soil of type {soil} with a moisture of {mois} and have used {pest} pesticides/fertilisers. Can you give me a summary of the crop yield with this information and not ask for more information?",
+                        "content": f"I have sown {crop} in a temperature of {temp} celcius with a rainfall of {rain}mm in a soil of type {soil} with a moisture of {mois} and have used {pest} pesticides/fertilisers. Can you give me a summary of the crop yield with this information and not ask for more information?",
                     },
                 ],
                 provider=provider,
