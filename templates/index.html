@@ -10,16 +10,16 @@
         <!-- title -->
         <div class="flex p-20 text-center">
             <h1 class="text-5xl uppercase text-zinc-300 mx-auto font-semibold">
-                Crop Yield Predictor
+                🌾 Crop Yield Predictor 🌾
             </h1>
         </div>
         <!-- main body -->
         <section class="flex w-full">
             <!-- parameter inputs -->
             <div class="w-2/3 flex-wrap px-10">
-                <form action="/predict" method="post">
-                    <div class="flex">
-                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-5">
+                <form action="/predict" method="post" oninput="">
+                    <div class="flex mx-auto items-center justify-center">
+                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-3">
                             <label for="crop" class="input-label">Crop</label>
                             <input
                                 class="input-param"
@@ -29,7 +29,9 @@
                                 placeholder="Enter the crop name"
                             />
                         </div>
-                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-5">
+                    </div>
+                    <div class="flex">
+                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-3">
                             <label for="temperature" class="input-label"
                                 >Temperature</label
                             >
@@ -38,12 +40,10 @@
                                 id="temperature"
                                 type="number"
                                 name="temperature"
-                                placeholder="Enter the temperature"
+                                placeholder="Enter the temperature (C)"
                             />
                         </div>
-                    </div>
-                    <div class="flex">
-                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-5">
+                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-3">
                             <label for="rainfall" class="input-label"
                                 >Rainfall</label
                             >
@@ -52,10 +52,22 @@
                                 id="rainfall"
                                 type="number"
                                 name="rainfall"
-                                placeholder="Enter length of rainfall"
+                                placeholder="Enter length of rainfall (mm)"
                             />
                         </div>
-                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-5">
+                    </div>
+                    <div class="flex">
+                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-3">
+                            <label for="soil" class="input-label">Soil</label>
+                            <input
+                                class="input-param"
+                                id="soil"
+                                type="text"
+                                name="soil"
+                                placeholder="Enter soil type"
+                            />
+                        </div>
+                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-3">
                             <label for="moisture" class="input-label"
                                 >Moisture of soil</label
                             >
@@ -68,42 +80,88 @@
                             />
                         </div>
                     </div>
-                    <div class="flex">
-                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-5">
-                            <label for="soil" class="input-label">Soil</label>
-                            <input
-                                class="input-param"
-                                id="soil"
-                                type="text"
-                                name="soil"
-                                placeholder="Enter soil type"
-                            />
-                        </div>
-                        <div class="flex flex-col w-1/2 flex-wrap px-10 py-5">
-                            <label for="ph" class="input-label">disha</label>
-                            <input
-                                class="input-param"
-                                id="disha"
-                                type="number"
-                                name="disha"
-                                placeholder="disha"
-                            />
-                        </div>
+                    <div class="flex flex-col px-10 py-5">
+                        <label for="pest" class="input-label"
+                            >Pesticides/Fertilisers</label
+                        >
+                        <input
+                            class="input-param h-20"
+                            id="pest"
+                            type="text"
+                            name="pest"
+                            placeholder="Enter the pesticides or fertilisers that you have used"
+                        />
+                    </div>
+                    <!-- buttons -->
+                    <div
+                        class="flex w-full mx-auto items-center justify-center text-gray-200 space-x-4 py-6"
+                    >
+                        <button
+                            class="btn bg-red-500 border-red-500"
+                            onclick="resetForm()"
+                            type="button"
+                        >
+                            Reset
+                        </button>
+                        <button
+                            class="btn bg-green-500 border-green-500"
+                            type="submit"
+                        >
+                            Submit
+                        </button>
                     </div>
                 </form>
             </div>
             <!-- summary -->
-            <div class="w-1/3 flex-wrap px-10">
-                <h1
-                    class="text-3xl text-lime-500 font-semibold text-center mb-4"
-                >
-                    Summary
-                </h1>
-                <p id="summary" class="text-gray-200 text-lg">
-                    Your summary will appear here
-                </p>
+            <div class="w-1/3 justify-center items-center flex-wrap px-10 py-6">
+                <div class="border-2 rounded-lg border-gray-400 h-full">
+                    <h2 class="text-xl text-gray-400 p-2 text-center">
+                        Calculated Crop Yield:
+                        <span class="font-semibold text-gray-200">{{yyy}}</span>
+                    </h2>
+                    <h1
+                        class="text-3xl text-lime-500 font-semibold text-center my-3 uppercase"
+                    >
+                        Summary
+                    </h1>
+                    <p
+                        id="summary"
+                        class="text-gray-200 px-4 text-justify text-lg py-4"
+                    >
+                        {{ summary }}
+                    </p>
+                </div>
             </div>
         </section>
+        <!-- <section class="w-1/2 mx-auto py-10">
+            <div class="flex w-full text-gray-200 space-x-4">
+                <button class="btn bg-blue-500 border-blue-500">
+                    Regenerate
+                </button>
+                <button
+                    class="btn bg-red-500 border-red-500"
+                    onclick="resetForm()"
+                >
+                    Reset
+                </button>
+                <button class="btn bg-green-500 border-green-500" type="submit">
+                    Save
+                </button>
+            </div>
+        </section> -->
+        <!-- javascript -->
+        <script>
+            function resetForm() {
+                window.location.href = window.location.href.replace('predict', '');
+                document.getElementById("summary").innerHTML = "";
+                document.getElementById("crop").value = "";
+                document.getElementById("temperature").value = "";
+                document.getElementById("rainfall").value = "";
+                document.getElementById("soil").value = "";
+                document.getElementById("moisture").value = "";
+                document.getElementById("pest").value = "";
+            }
+        </script>
     </body>
 </html>
 
