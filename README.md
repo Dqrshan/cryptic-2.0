@@ -1,6 +1,6 @@
 <h1 align="center">🌾 CROP YIELD PREDICTOR 🌾 </h1>
 
-_Your precision farming method to integrate technology & agriculture to calculate your crop yields!_
+<i align="center">Your precision farming method to integrate technology & agriculture to calculate your crop yields!</i>
 
 ---
 
